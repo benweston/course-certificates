@@ -27,12 +27,30 @@ module "project-factory" {
   deletion_policy = "DELETE"
 
   activate_apis = [
-    "compute.googleapis.com",
     "storage.googleapis.com",
     "iam.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "logging.googleapis.com",
-    "monitoring.googleapis.com"
+    "cloudresourcemanager.googleapis.com"
   ]
 
+}
+
+resource "google_project_service" "disable_compute" {
+  project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
+  service = "compute.googleapis.com"
+
+  disable_on_destroy = true
+}
+
+resource "google_project_service" "disable_logging" {
+  project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
+  service = "logging.googleapis.com"
+
+  disable_on_destroy = true
+}
+
+resource "google_project_service" "disable_monitoring" {
+  project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
+  service = "monitoring.googleapis.com"
+
+  disable_on_destroy = true
 }
