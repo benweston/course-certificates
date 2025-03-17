@@ -34,21 +34,21 @@ module "project-factory" {
 
 }
 
-resource "google_project_service" "disable_compute" {
+resource "google_project_service" "disable_storage" {
   project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
   service = "storage.googleapis.com"
 
   disable_on_destroy = true
 }
 
-resource "google_project_service" "disable_logging" {
+resource "google_project_service" "disable_iam" {
   project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
   service = "iam.googleapis.com"
 
   disable_on_destroy = true
 }
 
-resource "google_project_service" "disable_monitoring" {
+resource "google_project_service" "disable_cloud_resource_manager" {
   project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
   service = "cloudresourcemanager.googleapis.com"
 
