@@ -36,21 +36,21 @@ module "project-factory" {
 
 resource "google_project_service" "disable_compute" {
   project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
-  service = "compute.googleapis.com"
+  service = "storage.googleapis.com"
 
   disable_on_destroy = true
 }
 
 resource "google_project_service" "disable_logging" {
   project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
-  service = "logging.googleapis.com"
+  service = "iam.googleapis.com"
 
   disable_on_destroy = true
 }
 
 resource "google_project_service" "disable_monitoring" {
   project = "${var.project_id_prefix}-${random_integer.randomised_suffix.result}"
-  service = "monitoring.googleapis.com"
+  service = "cloudresourcemanager.googleapis.com"
 
   disable_on_destroy = true
 }
